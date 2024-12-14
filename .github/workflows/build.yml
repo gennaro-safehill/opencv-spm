@@ -38,6 +38,13 @@ jobs:
           repository: opencv/opencv
           ref: refs/tags/${{ steps.get_version.outputs.VERSION }}
           path: 'opencv'
+
+      - name: Checkout OpenCV-Contrib
+        uses: actions/checkout@v3
+        with:
+          repository: opencv/opencv_contrib
+          ref: refs/tags/${{ steps.get_version.outputs.VERSION }}
+          path: 'opencv_contrib'
       
       - name: Build xcframework
         working-directory: opencv
@@ -48,6 +55,133 @@ jobs:
           git apply $GITHUB_WORKSPACE/opencv-spm/patches/*.patch
           pip3 install pathlib
           python3 platforms/apple/build_xcframework.py \
+              --contrib=../opencv_contrib \
+              --without alphamat \
+              --without aruco \
+              --without bgsegm \
+              --without bioinspired \
+              --without cannops \
+              --without ccalib \
+              --without cnn_3dobj \
+              --without cudaarithm \
+              --without cudabgsegm \
+              --without cudacodec \
+              --without cudafeatures2d \
+              --without cudafilters \
+              --without cudaimgproc \
+              --without cudalegacy \
+              --without cudaobjdetect \
+              --without cudaoptflow \
+              --without cudastereo \
+              --without cudawarping \
+              --without cudev \
+              --without cvv \
+              --without datasets \
+              --without dnn_objdetect \
+              --without dnn_superres \
+              --without dnns_easily_fooled \
+              --without dpm \
+              --without face \
+              --without fastcv \
+              --without freetype \
+              --without fuzzy \
+              --without hdf \
+              --without hfs \
+              --without img_hash \
+              --without intensity_transform \
+              --without julia \
+              --without line_descriptor \
+              --without matlab \
+              --without mcc \
+              --without optflow \
+              --without ovis \
+              --without phase_unwrapping \
+              --without plot \
+              --without quality \
+              --without rapid \
+              --without reg \
+              --without rgbd \
+              --without saliency \
+              --without sfm \
+              --without shape \
+              --without signal \
+              --without stereo \
+              --without structured_light \
+              --without superres \
+              --without surface_matching \
+              --without text \
+              --without tracking \
+              --without videostab \
+              --without viz \
+              --without wechat_qrcode \
+              --without xfeatures2d \
+              --without ximgproc \
+              --without xobjdetect \
+              --without xphoto \
+              --without modules \
+              --without 16 \
+              --without md \
+              --without alphamat \
+              --without aruco \
+              --without bgsegm \
+              --without bioinspired \
+              --without cannops \
+              --without ccalib \
+              --without cnn_3dobj \
+              --without cudaarithm \
+              --without cudabgsegm \
+              --without cudacodec \
+              --without cudafeatures2d \
+              --without cudafilters \
+              --without cudaimgproc \
+              --without cudalegacy \
+              --without cudaobjdetect \
+              --without cudaoptflow \
+              --without cudastereo \
+              --without cudawarping \
+              --without cudev \
+              --without cvv \
+              --without datasets \
+              --without dnn_objdetect \
+              --without dnn_superres \
+              --without dnns_easily_fooled \
+              --without dpm \
+              --without face \
+              --without fastcv \
+              --without freetype \
+              --without fuzzy \
+              --without hdf \
+              --without hfs \
+              --without intensity_transform \
+              --without julia \
+              --without line_descriptor \
+              --without matlab \
+              --without mcc \
+              --without optflow \
+              --without ovis \
+              --without phase_unwrapping \
+              --without plot \
+              --without quality \
+              --without rapid \
+              --without reg \
+              --without rgbd \
+              --without saliency \
+              --without sfm \
+              --without shape \
+              --without signal \
+              --without stereo \
+              --without structured_light \
+              --without superres \
+              --without surface_matching \
+              --without text \
+              --without tracking \
+              --without videostab \
+              --without viz \
+              --without wechat_qrcode \
+              --without xfeatures2d \
+              --without ximgproc \
+              --without xobjdetect \
+              --without xphoto \
               --iphoneos_archs=arm64 \
               --visionos_archs=arm64 \
               --visionsimulator_archs=arm64 \
